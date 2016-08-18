@@ -1,0 +1,32 @@
+install tomcat:
+sudo apt-get install tomcat8 tomcat8-docs tomcat8-admin tomcat8-examples
+
+restart tomcat service:
+sudo /etc/init.d/tomcat8 restart
+
+view tomcat log:
+sudo tail -f /var/log/tomcat8/catalina.out
+
+tomcat admin interface:
+	enable: 
+		add:
+		<role rolename="manager-gui"/>
+		<user name="admin" password="secre_pass" roles="manager-gui"/>
+		to:
+		sudo pico /etc/tomcat8/tomcat-users.xml
+	view:
+	http://localhost:8080/manager/html
+
+change tomcat port:
+	sudo pluma /etc/tomcat8/server.xml
+	modificar a:
+	<Connector port="8081" protocol="HTTP/1.1"
+
+Enable tomcat8:
+cd /etc/rc5.d
+sudo ln -s ../init.d/tomcat8 S01tomcat8
+
+Disable service:
+sudo rm /etc/rc5.d/S01tomcat8
+
+
